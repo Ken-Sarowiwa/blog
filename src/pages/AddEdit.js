@@ -2,9 +2,11 @@ import React from 'react'
 import {useState} from "react"
 import {MDBValidation, MDBInput, MDBBtn} from "mdb-react-ui-kit"
 import axios from 'axios'
-import { Toast } from 'react-toastify'
+import { Toast, toast } from 'react-toastify'
 import {useNavigate} from "react-router-dom"
-//za5gjpw7
+import config from '../components/config'
+
+
 
 
 const initialstate = {
@@ -15,14 +17,14 @@ const initialstate = {
 }
 
 
-const blog_options = ["Travel", "Fashio", "Fitenss", "Sports", "Food", "Tech"];
+const blog_options = ["Travel", "Fashion", "Fitenss", "Sports", "Food", "Tech"];
 function AddEdit() {
   const [formData, setFormData] = useState(initialstate);
   const [error, setError]  = useState(null);
   const {title, description,category,imageUrl} = formData;
   const Navigate = useNavigate()
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
 
   };
 
@@ -31,7 +33,14 @@ function AddEdit() {
   }
 
   const onUploadImage = (file) => {
-
+    const cloudimage = new FormData();
+    cloudimage.append("file", file)
+    cloudimage.append("upload_preset", "za5gjpw7" )
+    axios.post("https://api.cloudinary.com/v1_1/za5gjpw7/image/upload", cloudimage).then((response)=>{
+      toast.info("Image uploaded successfully")
+      console.log(response)
+      setFormData({...formData, imageUrl: response.data.url})
+    }).catch("error")
   }
 
   const onInputChange= (e)=>{
@@ -80,7 +89,7 @@ function AddEdit() {
         required
         rows={4}
         invalid
-        onUpload={(e)=>onUploadImage(e.target.files)}
+        onChange={(e)=>onUploadImage(e.target.files[0])}
       />
       <br></br>
       <select className='categoryDropdown' onChange={onCategoryChange} value={category}>
@@ -92,7 +101,7 @@ function AddEdit() {
       <br></br>
       <br></br>
       <MDBBtn type='submit' style={{marginRight: "10px"}}>Add</MDBBtn>
-      <MDBBtn type='danger' style={{marginRight: "10px"}} onClick={()=>Navigate("/")}>Go back</MDBBtn>
+      <MDBBtn type='Danger' style={{marginRight: "10px"}} onClick={()=>Navigate("/")}>Go back</MDBBtn>
       
       </div>
     </MDBValidation>
