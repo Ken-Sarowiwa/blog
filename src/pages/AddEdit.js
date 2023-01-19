@@ -33,10 +33,15 @@ function AddEdit() {
   }
 
   const onUploadImage = (file) => {
+    const config = {
+          params: {
+            api_key: "187512453143324",
+          }
+  }
     const cloudimage = new FormData();
     cloudimage.append("file", file)
     cloudimage.append("upload_preset", "za5gjpw7" )
-    axios.post("https://api.cloudinary.com/v1_1/za5gjpw7/image/upload", cloudimage).then((response)=>{
+    axios.post("https://api.cloudinary.com/v1_1/za5gjpw7/image/upload", cloudimage, config).then((response)=>{
       toast.info("Image uploaded successfully")
       console.log(response)
       setFormData({...formData, imageUrl: response.data.url})
@@ -107,5 +112,6 @@ function AddEdit() {
     </MDBValidation>
   )
 }
+
 
 export default AddEdit
