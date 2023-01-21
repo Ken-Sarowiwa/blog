@@ -26,12 +26,15 @@ function AddEdit() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!category){
-      setError("please select a category");
-    }
     if (title && description&& category&& imageUrl){
       const updated = {...formData};
+      console.log(updated);
       const response = await axios.post("http://localhost:5000/blogs", updated);
+      if (response.statusCode === 201){
+        toast.info("upload succesfull ")
+      }else{
+        toast.error("upload failed");
+      }
     }
   };
 
