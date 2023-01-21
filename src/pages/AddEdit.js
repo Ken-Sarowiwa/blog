@@ -24,13 +24,14 @@ function AddEdit() {
   const {title, description,category,imageUrl} = formData;
   const Navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!category){
       setError("please select a category");
     }
     if (title && description&& category&& imageUrl){
-      currentDate = getDate();
+      const updated = {...formData};
+      const response = await axios.post("http://localhost:5000/blogs", updated);
     }
   };
 
