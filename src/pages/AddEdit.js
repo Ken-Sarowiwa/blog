@@ -5,7 +5,7 @@ import axios from 'axios'
 import { Toast, toast } from 'react-toastify'
 import {useNavigate} from "react-router-dom"
 import config from '../components/config'
-
+ 
 
 
 
@@ -25,10 +25,17 @@ function AddEdit() {
   const Navigate = useNavigate()
 
   const handleSubmit = (e) => {
-
+    e.preventDefault();
+    if (!category){
+      setError("please select a category");
+    }
+    if (title && description&& category&& imageUrl){
+      currentDate = getDate();
+    }
   };
 
-  const onCategoryChange = (category) => {
+  const onCategoryChange = (e) => {
+    setFormData({...formData, category: e.target.value})
 
   }
 
@@ -43,13 +50,20 @@ function AddEdit() {
     cloudimage.append("upload_preset", "za5gjpw7" )
     axios.post("https://api.cloudinary.com/v1_1/za5gjpw7/image/upload", cloudimage, config).then((response)=>{
       toast.info("Image uploaded successfully")
-      console.log(response)
+      console.log(response.data)
       setFormData({...formData, imageUrl: response.data.url})
     }).catch("error")
   }
 
   const onInputChange= (e)=>{
+    let {name, value} = e.target
+    setFormData({...formData,[name]: value } )
 
+  }
+
+
+  const onDescChange= (e)=>{
+    setFormData({...formData,description: e.target.value})
   }
   
   return (
@@ -83,7 +97,7 @@ function AddEdit() {
         rows={4}
         label="description"
         invalid
-        onChange={onInputChange}
+        onChange={onDescChange}
       />
       <br></br>
       <MDBInput
