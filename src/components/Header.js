@@ -18,7 +18,7 @@ function Header() {
           </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+      <a class="navbar-brand mt-2 mt-lg-0" href="">
         <img
           src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.https://www.123rf.com/photo_155572084_guitar-vector-bass-ukulele-icon-logo-symbol-music-cartoon-character-graphic-illustration-doodle-desi.html?vti=lm6lkihsyx5qejr1zd-1-2"
           height="15"
