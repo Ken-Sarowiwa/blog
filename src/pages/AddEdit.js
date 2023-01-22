@@ -27,9 +27,9 @@ function AddEdit() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (title && description&& category&& imageUrl){
-      const updated = {...formData};
+      const updated = ({...formData});
       console.log(updated);
-      const response = await axios.post("http://localhost:5000/blogs", updated);
+      const response = await axios.post("http://localhost:3000/blogs", updated);
       if (response.statusCode === 201){
         toast.info("upload succesfull ")
       }else{
@@ -56,7 +56,7 @@ function AddEdit() {
       toast.info("Image uploaded successfully")
       console.log(response.data)
       setFormData({...formData, imageUrl: response.data.url})
-    }).catch("error")
+    }).catch(setError("something went wrong"))
   }
 
   const onInputChange= (e)=>{
@@ -81,10 +81,10 @@ function AddEdit() {
         placeholder="title"
         validation="Please provide a title"
         required
-        textarea
+        textarea="true"
         rows={4}
         label="title"
-        invalid
+        invalid="true"
         onChange={onInputChange}
         
       />
@@ -97,10 +97,10 @@ function AddEdit() {
         placeholder="description"
         validation="Please provide a description"
         required
-        textarea
+        textarea="true"
         rows={4}
         label="description"
-        invalid
+        invalid="true"
         onChange={onDescChange}
       />
       <br></br>
@@ -111,7 +111,7 @@ function AddEdit() {
         validation="Please provide an image file"
         required
         rows={4}
-        invalid
+        invalid="true"
         onChange={(e)=>onUploadImage(e.target.files[0])}
       />
       <br></br>
