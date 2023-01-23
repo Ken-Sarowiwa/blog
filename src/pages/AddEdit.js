@@ -29,12 +29,14 @@ function AddEdit() {
     if (title && description&& category&& imageUrl){
       const updated = ({...formData});
       console.log(updated);
-      const response = await axios.post("http://localhost:3000/blogs", updated);
-      if (response.statusCode === 201){
-        toast.info("upload succesfull ")
+      const response = await axios.post("http://localhost:3001/blogs", updated);
+      if (response.status === 201){
+        toast.info("Blog updated successfully")
       }else{
         toast.error("upload failed");
       }
+    setFormData({title:"", description: "", category: "", imageUrl: "",})
+    Navigate("/")
     }
   };
 
@@ -98,20 +100,15 @@ function AddEdit() {
         validation="Please provide a description"
         required
         textarea="true"
-        rows={4}
         label="description"
         invalid="true"
         onChange={onDescChange}
       />
       <br></br>
       <MDBInput
-        name='image'
-        value={imageUrl}
         type="file"
         validation="Please provide an image file"
         required
-        rows={4}
-        invalid="true"
         onChange={(e)=>onUploadImage(e.target.files[0])}
       />
       <br></br>
