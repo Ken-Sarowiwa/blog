@@ -4,6 +4,20 @@
       "id": 1,
       "title": "json-server",
       "author": "typicode"
+    },
+    {
+      "title": "africa",
+      "description": "africa",
+      "category": "Fashion",
+      "imageUrl": "http://res.cloudinary.com/dj89zrstn/image/upload/v1676868628/dkicb9ntqpdozgnwycoi.webp",
+      "id": 2
+    },
+    {
+      "title": "I am africa ",
+      "description": "blalalala",
+      "category": "Sports",
+      "imageUrl": "http://res.cloudinary.com/dj89zrstn/image/upload/v1676869976/irtsnimsfdmbnhor1dyu.jpg",
+      "id": 3
     }
   ],
   "comments": [
