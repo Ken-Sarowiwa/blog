@@ -29,7 +29,7 @@ function AddEdit() {
     if (title && description&& category&& imageUrl){
       const updated = ({...formData});
       console.log(updated);
-      const response =  await axios.post("http://localhost:3000/blogs", updated);
+      const response =  await axios.post("http://localhost:3000/posts", updated);
       if (response.status === 201){
         toast.info("Blog updated successfully")
       }else{
