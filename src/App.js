@@ -9,11 +9,13 @@ import { About } from './pages/About';
 import {ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Header from './components/Header';
+import Badge from './components/Badge';
 function App() {
   return (
     <BrowserRouter>
     <div className='App'>
       <Header/>
+      <Badge/>
       <ToastContainer/>
         <Routes>
             <Route path= "/" element={<Home />}/>
