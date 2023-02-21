@@ -1,8 +1,10 @@
 import React from 'react'
+import AddEdit from './AddEdit'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+    </div>
   )
 }
 
